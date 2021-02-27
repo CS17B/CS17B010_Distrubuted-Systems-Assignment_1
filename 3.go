@@ -6,7 +6,7 @@ import (
 	"math/rand"
 	"time"
 )
-var tokens = make(chan int, 4) 
+var ch = make(chan int, 4) 
 
 func main(){
   wg := sync.WaitGroup{}
@@ -21,9 +21,9 @@ func main(){
 func doInParallel(wg* sync.WaitGroup, n int) {
   var e int  
   e =rand.Intn(10)
-  tokens <- e
+  ch <- e
   fmt.Println(n)
   time.Sleep(2000 * time.Millisecond)
-  <- tokens 
+  <- ch 
    wg.Done()
 }
