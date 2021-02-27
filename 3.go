@@ -13,12 +13,12 @@ func main(){
   arr := [10]int{5,10,15,20,25,30,35,40,45,50}
   for _,n:= range arr {
     wg.Add(1)
-    go doInParallel(&wg, n)
+    go Printval(&wg, n)
   }
   wg.Wait()
 }
 
-func doInParallel(wg* sync.WaitGroup, n int) {
+func Printval(wg* sync.WaitGroup, n int) {
   var e int  
   e =rand.Intn(10)
   ch <- e
